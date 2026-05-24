@@ -20,7 +20,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-API_BASE = "http://127.0.0.1:8000/api/v1"
+# Auto-detect API URL: use ngrok in cloud, localhost when running locally
+import os
+_NGROK_URL = os.getenv("API_BASE_URL", "https://sulphuric-ravioli-rifling.ngrok-free.dev")
+API_BASE = f"{_NGROK_URL}/api/v1"
 
 st.markdown("""
 <style>
