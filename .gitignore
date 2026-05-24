@@ -1,0 +1,49 @@
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ── Virtual environments ──────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Environment secrets ───────────────────────────────────────
+.env
+*.env.local
+
+# ── Generated reports (keep folder, ignore contents) ─────────
+reports/*.pdf
+reports/*.md
+!reports/.gitkeep
+
+# ── ChromaDB (local vector store) ────────────────────────────
+chroma_db/
+
+# ── Data cache ───────────────────────────────────────────────
+data/*.json
+data/*.csv
+
+# ── IDE ───────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+
+# ── OS ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Testing ───────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Logs ──────────────────────────────────────────────────────
+*.log
