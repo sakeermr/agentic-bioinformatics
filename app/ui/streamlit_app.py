@@ -20,10 +20,28 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Auto-detect API URL: use ngrok in cloud, localhost when running locally
+# Auto-detect API URL:
+# 1. Streamlit Cloud secrets (API_BASE_URL)
+# 2. Environment variable
+# 3. Local fallback
 import os
-_NGROK_URL = os.getenv("API_BASE_URL", "https://sulphuric-ravioli-rifling.ngrok-free.dev")
-API_BASE = f"{_NGROK_URL}/api/v1"
+
+def get_api_base():
+    # Try Streamlit secrets first (Streamlit Cloud deployment)
+    try:
+        url = st.secrets["API_BASE_URL"]
+        if url:
+            return f"{url.rstrip('/')}/api/v1"
+    except Exception:
+        pass
+    # Try environment variable
+    url = os.getenv("API_BASE_URL", "")
+    if url:
+        return f"{url.rstrip('/')}/api/v1"
+    # Local fallback
+    return "http://127.0.0.1:8000/api/v1"
+
+API_BASE = get_api_base()
 
 st.markdown("""
 <style>
